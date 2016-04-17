@@ -258,7 +258,7 @@ class DoctrineObject extends AbstractHydrator
                 $target = $metadata->getAssociationTargetClass($field);
 
                 if ($metadata->isSingleValuedAssociation($field)) {
-                    if (! method_exists($object, $setter)) {
+                    if (! is_callable([$object, $setter])) {
                         continue;
                     }
 
@@ -275,7 +275,7 @@ class DoctrineObject extends AbstractHydrator
                     $this->toMany($object, $field, $target, $value);
                 }
             } else {
-                if (! method_exists($object, $setter)) {
+                if (! is_callable([$object, $setter])) {
                     continue;
                 }
 
